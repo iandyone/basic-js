@@ -19,7 +19,7 @@ function countCats(matrix) {
     return matrix.flat().filter((value) => value === cat).length;
 }
 
-[].reduce((acc, item) => (acc += item), 0);
+
 
 module.exports = {
     countCats,
