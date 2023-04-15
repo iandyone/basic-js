@@ -16,18 +16,39 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [false, false, false]
  * ]
  *
- * The result should be following:
+ * The checkedMatrix should be following:
  * [
  *  [1, 2, 1],
  *  [2, 1, 1],
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
-}
+function minesweeper(matrix) {
+    let checkedMatrix = [];
 
+    for (let i = 0; i < matrix.length; i++) {
+        checkedMatrix.push([]);
+
+        for (let j = 0; j < matrix[i].length; j++) {
+            const isTopLeftBoxHasMine = j - 1 >= 0 && i - 1 >= 0 && matrix[i - 1][j - 1];
+            const isTopMiddleBoxHasMine = i - 1 >= 0 && matrix[i - 1][j];
+            const isTopRightBoxHasMine = j + 1 < matrix[i].length && i - 1 >= 0 && matrix[i - 1][j + 1];
+            const isRightMiddleBoxHasMine = j + 1 < matrix[i].length && matrix[i][j + 1];
+            const isBottomRightBoxHasMine = j + 1 < matrix[i].length && i + 1 < matrix.length && matrix[i + 1][j + 1];
+            const isBottomMiddleBoxHasMine = i + 1 < matrix.length && matrix[i + 1][j];
+            const isBottomLeftBoxHasMine = j - 1 >= 0 && i + 1 < matrix.length && matrix[i + 1][j - 1];
+            const isLeftMiddleBoxHasMine = j - 1 >= 0 && matrix[i][j - 1];
+            let mineCounter = 0;
+
+            const currentBoxSiblingsChecks = [isTopLeftBoxHasMine, isTopMiddleBoxHasMine, isTopRightBoxHasMine, isRightMiddleBoxHasMine, isBottomRightBoxHasMine, isBottomMiddleBoxHasMine, isBottomLeftBoxHasMine, isLeftMiddleBoxHasMine];
+
+            currentBoxSiblingsChecks.forEach((isMineInBox) => mineCounter = (isMineInBox) ? ++mineCounter : mineCounter);
+
+            checkedMatrix[i].push(mineCounter);
+        }
+    }
+    return checkedMatrix;
+}
 module.exports = {
-  minesweeper
+    minesweeper,
 };
