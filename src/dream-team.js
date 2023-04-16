@@ -19,7 +19,7 @@ function createDreamTeam(members) {
         return false;
     }
 
-    nameLetters = [];
+    const nameLetters = [];
 
     for (const member of members) {
         if (typeof member === 'string') {

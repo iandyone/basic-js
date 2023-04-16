@@ -23,9 +23,8 @@ function repeater(str, options) {
         addition = Array(additionRepeatTimes).fill(addition).join(additionSeparator);
     }
 
-    return repeatTimes ? Array(repeatTimes).fill(`${str}${addition}`).join(separator) : `${str}${addition}`   
+    return repeatTimes ? Array(repeatTimes).fill(`${str}${addition}`).join(separator) : `${str}${addition}`;
 }
-
 
 module.exports = {
     repeater,

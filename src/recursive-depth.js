@@ -20,8 +20,10 @@ class DepthCalculator {
             arr.forEach((element) => {
                 counter = Math.max(counter, this.calculateDepth(element));
             });
+
             ++counter;
         }
+        
         return counter;
     }
 }
